@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Runtime.CompilerServices;
 
 namespace BlogLab.Repository
 {
@@ -57,7 +56,8 @@ namespace BlogLab.Repository
                 await connection.OpenAsync(cancellationToken);
 
                 applicationUserIdentity = await connection.QuerySingleOrDefaultAsync<ApplicationUserIdentity>(
-                    "Account_GetByUsername", new { NormalizedUsername = normalizedUsername },
+                    "Account_GetByUsername",
+                    new { NormalizedUsername = normalizedUsername },
                     commandType: CommandType.StoredProcedure
                     );
             }
